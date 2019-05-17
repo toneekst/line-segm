@@ -51,14 +51,7 @@ def bce_dice_loss(y_true, y_pred):
 
 num=6
 
-#json_file = open("road_mark_v5_Adam.json", "r")
-#loaded_model_json = json_file.read()
-#json_file.close()
-#loaded_model = model_from_json(loaded_model_json)
-#loaded_model.load_weights("road_mark_v5_Adam.h5")
-#loaded_model.compile(optimizer=RMSprop(lr=0.0001), loss=bce_dice_loss, metrics=[dice_coeff])
-#
-#model = loaded_model
+
 
 
 
@@ -176,71 +169,7 @@ def perspective(images,mask_images,rshag):
 
 
 
-#IMAGE_H = 200
-#IMAGE_W = 500
-#
-#src = np.float32([[6, 300], [506, 300], [6, 512], [506, 512]])
-#dst = np.float32([[0, 0], [500, 0], [200, 200], [300, 200]])
-#M = cv2.getPerspectiveTransform(src, dst) # The transformation matrix
-#Minv = cv2.getPerspectiveTransform(dst, src) # Inverse transformation
-#
-##squ = squ[380:512, 0:512]
-##plt.imshow(squ) # Show results
-##plt.show()
-#warped_imgs = cv2.warpPerspective(img, M, (IMAGE_W, IMAGE_H)) # Image warping
-#
-#
-#warped_img = cv2.warpPerspective(squ, M, (IMAGE_W, IMAGE_H)) # Image warping
-#plt.imshow(warped_img) # Show results
-#plt.show()
-#
-#hist = []
-#column_width = 10   # this allows you to speed up the result,
-           
-        # at the expense of horizontal resolution. (higher is faster)
-        
-        
-#def find_line_nums(warped_img):
-#    hist = []
-#    column_width = 10 
-#    
-#    for x in range(2,(int(500/column_width))-2):
-#    
-#    
-#    
-#        su =np.sum(warped_img[0:170,x*column_width:column_width+x*column_width])/255
-#        
-#        su_plus=np.sum(warped_img[0:170,(x+1)*column_width:column_width+(x+1)*column_width])/255
-#        su_plus2=np.sum(warped_img[0:170,(x+2)*column_width:column_width+(x+2)*column_width])/255
-#    
-#        su_minus = np.sum(warped_img[0:170,(x-1)*column_width:column_width+(x-1)*column_width])/255
-#        su_minus2 = np.sum(warped_img[0:170,(x-2)*column_width:column_width+(x-2)*column_width])/255
-#    
-#        if (su!=0 and su>su_plus and su>su_plus2 and su>su_minus and su>su_minus2 and  su>50):
-#        
-#            hist.append(x*column_width)
-#            print(su,x*column_width)
-#            
-#    return hist   
 
-
- 
-#for x in range(2,(int(500/column_width))-2):
-#    
-#    
-#    
-#    su =np.sum(warped_img[0:170,x*column_width:column_width+x*column_width])/255
-#    su_plus=np.sum(warped_img[0:170,(x+1)*column_width:column_width+(x+1)*column_width])/255
-#    su_plus2=np.sum(warped_img[0:170,(x+2)*column_width:column_width+(x+2)*column_width])/255
-#    
-#    su_minus = np.sum(warped_img[0:170,(x-1)*column_width:column_width+(x-1)*column_width])/255
-#    su_minus2 = np.sum(warped_img[0:170,(x-2)*column_width:column_width+(x-2)*column_width])/255
-#    
-#    if (su!=0 and su>su_plus and su>su_plus2 and su>su_minus and su>su_minus2 and  su>50):
-#        
-#        hist.append(x*column_width)
-#        print(su,x*column_width)
-        
     
 
 
@@ -402,119 +331,6 @@ mask = mask.astype(np.uint8)
 find_lines(mask,imagees,hist,kol=2)
 
 
-#def find_lines(imag_mask ,imags,nums= len(hist)):
-#    if (nums!=None):
-#        
-#        
-#        
-#        
-#        
-#        xverhh=[]
-#        xnizz=[]
-#        for dot in hist:
-#            
-#            sliced_image = imag_mask[0:200,dot-30:dot+30]
-#            
-#            sliced_image2 = imags[0:200,dot-30:dot+30]
-#            
-#            blur = cv2.blur(sliced_image,(7,7))
-#            
-#            plt.imshow(blur) 
-#            plt.show()
-#            
-#            canny = cv2.Canny(blur, 10, 250, None, 3)
-#            
-#            lines = cv2.HoughLinesP(canny,rho = 1,theta = 1*np.pi/180,threshold = 20,minLineLength = 20,maxLineGap = 50)
-#            
-#            if (np.any(lines) != None):
-#                
-#                for x1,y1,x2,y2 in lines[0]:
-#                    cv2.line(sliced_image2,(x1,y1),(x2,y2),(0,255,0),3)
-#                    
-#                print(lines[0][0])        
-#                plt.imshow(sliced_image2) 
-#                plt.show()
-#            
-#                x1,y1,x2,y2 =lines[0][0][0],lines[0][0][1],lines[0][0][2],lines[0][0][3]
-#                
-#                if ((x2-x1)==0):
-#                    
-#                    tangens = (y2-y1)
-#                else:
-#                    
-#                    tangens = ((y2-y1)/(x2-x1))
-#                
-#                    
-#                print(tangens)
-#                print(math.degrees(math.atan(tangens)))
-#            
-#                xverh=(0-50+tangens*dot)/tangens
-#                xniz=(200-50+tangens*dot)/tangens
-#            
-#                xverhh.append(xverh)
-#                xnizz.append(xniz)
-#            
-#                print(xverh,xniz)
-#            
-#            
-#        for num in range(0,len(xverhh)):
-#            x1,y1,x2,y2 =int(xverhh[num]),0,int(xnizz[num]),200
-##            print(xverhh[num],0)
-##            print(xnizz[num],200)
-#            cv2.line(imags,(x1,y1),(x2,y2),(255,0,0),2)
-#        plt.imshow(imags) 
-#        plt.show()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#median = cv2.medianBlur(squ,33)
-#plt.imshow(median)
-#plt.show()
-#save_img=imsave('/home/tonee/segmentation/image_mask/' +'mask'+ str(num) +'.png',squ)
-#plt.imshow(predict)
-#plt.show()
-
-
-
-
-
-#image_path_train = '/home/tonee/segmentation/bdd100k/seg/images/test/'
-#mask_path_train='/home/tonee/segmentation/roma_v2/mask/0/'
-#
-#
-#train_ids = next(os.walk(image_path_train))[2]
-
-
-#for n, id_ in tqdm(enumerate(train_ids), total=len(train_ids)):
-#    path = image_path_train + id_
-#    img = imread(path)
-#    img = resize(img, (256, 256))
-#    x = np.expand_dims(img, axis=0)
-#    predict=model.predict(x,verbose=1)
-#    pred = (predict > 0.9).astype(np.uint8)
-##    path_m=mask_path_train + id_
-##    mask = imread(path_m)
-#    
-#    
-#    
-#    
-#    plt.imshow(img)
-#    plt.show()
-##    plt.imshow(mask)
-##    plt.show()
-#    plt.imshow(np.squeeze(pred))
-#    plt.show()
     
     
