@@ -241,145 +241,8 @@ def unet_512(input_shape=(512, 512, 3),
     up0a = Conv2D(16, (3, 3), padding='same')(up0a)
     up0a = BatchNormalization()(up0a)
     up0a = Activation('relu')(up0a)
-    # 512
-#    down0a = Conv2D(16, (3, 3), padding='same')(inputs)
-#    down0a = BatchNormalization()(down0a)
-#    down0a = Activation('relu')(down0a)
-#    down0a = Conv2D(16, (3, 3), padding='same')(down0a)
-#    down0a = BatchNormalization()(down0a)
-#    down0a = Activation('relu')(down0a)
-#    down0a_pool = MaxPooling2D((2, 2), strides=(2, 2))(down0a)
-#    # 256
-#
-#    down0 = Conv2D(32, (3, 3), padding='same')(down0a_pool)
-#    down0 = BatchNormalization()(down0)
-#    down0 = Activation('relu')(down0)
-#    down0 = Conv2D(32, (3, 3), padding='same')(down0)
-#    down0 = BatchNormalization()(down0)
-#    down0 = Activation('relu')(down0)
-#    down0_pool = MaxPooling2D((2, 2), strides=(2, 2))(down0)
-#    # 128
-#
-#    down1 = Conv2D(64, (3, 3), padding='same')(down0_pool)
-#    down1 = BatchNormalization()(down1)
-#    down1 = Activation('relu')(down1)
-#    down1 = Conv2D(64, (3, 3), padding='same')(down1)
-#    down1 = BatchNormalization()(down1)
-#    down1 = Activation('relu')(down1)
-#    down1_pool = MaxPooling2D((2, 2), strides=(2, 2))(down1)
-#    # 64
-#
-#    down2 = Conv2D(128, (3, 3), padding='same')(down1_pool)
-#    down2 = BatchNormalization()(down2)
-#    down2 = Activation('relu')(down2)
-#    down2 = Conv2D(128, (3, 3), padding='same')(down2)
-#    down2 = BatchNormalization()(down2)
-#    down2 = Activation('relu')(down2)
-#    down2_pool = MaxPooling2D((2, 2), strides=(2, 2))(down2)
-#    # 32
-#
-#    down3 = Conv2D(256, (3, 3), padding='same')(down2_pool)
-#    down3 = BatchNormalization()(down3)
-#    down3 = Activation('relu')(down3)
-#    down3 = Conv2D(256, (3, 3), padding='same')(down3)
-#    down3 = BatchNormalization()(down3)
-#    down3 = Activation('relu')(down3)
-#    down3_pool = MaxPooling2D((2, 2), strides=(2, 2))(down3)
-#    # 16
-#
-#    down4 = Conv2D(512, (3, 3), padding='same')(down3_pool)
-#    down4 = BatchNormalization()(down4)
-#    down4 = Activation('relu')(down4)
-#    down4 = Conv2D(512, (3, 3), padding='same')(down4)
-#    down4 = BatchNormalization()(down4)
-#    down4 = Activation('relu')(down4)
-#    down4_pool = MaxPooling2D((2, 2), strides=(2, 2))(down4)
-#    # 8
-#
-#    center = Conv2D(1024, (3, 3), padding='same')(down4_pool)
-#    center = BatchNormalization()(center)
-#    center = Activation('relu')(center)
-#    center = Conv2D(1024, (3, 3), padding='same')(center)
-#    center = BatchNormalization()(center)
-#    center = Activation('relu')(center)
-#    # center
-#
-#    up4 = UpSampling2D((2, 2))(center)
-#    up4 = concatenate([down4, up4], axis=3)
-#    up4 = Conv2D(512, (3, 3), padding='same')(up4)
-#    up4 = BatchNormalization()(up4)
-#    up4 = Activation('relu')(up4)
-#    up4 = Conv2D(512, (3, 3), padding='same')(up4)
-#    up4 = BatchNormalization()(up4)
-#    up4 = Activation('relu')(up4)
-#    up4 = Conv2D(512, (3, 3), padding='same')(up4)
-#    up4 = BatchNormalization()(up4)
-#    up4 = Activation('relu')(up4)
-#    # 16
-#
-#    up3 = UpSampling2D((2, 2))(up4)
-#    up3 = concatenate([down3, up3], axis=3)
-#    up3 = Conv2D(256, (3, 3), padding='same')(up3)
-#    up3 = BatchNormalization()(up3)
-#    up3 = Activation('relu')(up3)
-#    up3 = Conv2D(256, (3, 3), padding='same')(up3)
-#    up3 = BatchNormalization()(up3)
-#    up3 = Activation('relu')(up3)
-#    up3 = Conv2D(256, (3, 3), padding='same')(up3)
-#    up3 = BatchNormalization()(up3)
-#    up3 = Activation('relu')(up3)
-#    # 32
-#
-#    up2 = UpSampling2D((2, 2))(up3)
-#    up2 = concatenate([down2, up2], axis=3)
-#    up2 = Conv2D(128, (3, 3), padding='same')(up2)
-#    up2 = BatchNormalization()(up2)
-#    up2 = Activation('relu')(up2)
-#    up2 = Conv2D(128, (3, 3), padding='same')(up2)
-#    up2 = BatchNormalization()(up2)
-#    up2 = Activation('relu')(up2)
-#    up2 = Conv2D(128, (3, 3), padding='same')(up2)
-#    up2 = BatchNormalization()(up2)
-#    up2 = Activation('relu')(up2)
-#    # 64
-#
-#    up1 = UpSampling2D((2, 2))(up2)
-#    up1 = concatenate([down1, up1], axis=3)
-#    up1 = Conv2D(64, (3, 3), padding='same')(up1)
-#    up1 = BatchNormalization()(up1)
-#    up1 = Activation('relu')(up1)
-#    up1 = Conv2D(64, (3, 3), padding='same')(up1)
-#    up1 = BatchNormalization()(up1)
-#    up1 = Activation('relu')(up1)
-#    up1 = Conv2D(64, (3, 3), padding='same')(up1)
-#    up1 = BatchNormalization()(up1)
-#    up1 = Activation('relu')(up1)
-#    # 128
-#
-#    up0 = UpSampling2D((2, 2))(up1)
-#    up0 = concatenate([down0, up0], axis=3)
-#    up0 = Conv2D(32, (3, 3), padding='same')(up0)
-#    up0 = BatchNormalization()(up0)
-#    up0 = Activation('relu')(up0)
-#    up0 = Conv2D(32, (3, 3), padding='same')(up0)
-#    up0 = BatchNormalization()(up0)
-#    up0 = Activation('relu')(up0)
-#    up0 = Conv2D(32, (3, 3), padding='same')(up0)
-#    up0 = BatchNormalization()(up0)
-#    up0 = Activation('relu')(up0)
-#    # 256
-#
-#    up0a = UpSampling2D((2, 2))(up0)
-#    up0a = concatenate([down0a, up0a], axis=3)
-#    up0a = Conv2D(16, (3, 3), padding='same')(up0a)
-#    up0a = BatchNormalization()(up0a)
-#    up0a = Activation('relu')(up0a)
-#    up0a = Conv2D(16, (3, 3), padding='same')(up0a)
-#    up0a = BatchNormalization()(up0a)
-#    up0a = Activation('relu')(up0a)
-#    up0a = Conv2D(16, (3, 3), padding='same')(up0a)
-#    up0a = BatchNormalization()(up0a)
-#    up0a = Activation('relu')(up0a)
+    
+
     # 512
     classify = Conv2D(num_classes, (1, 1), activation='sigmoid')(up0a)
 
@@ -442,13 +305,7 @@ data_gen_args = dict(zoom_range=[0.8,1.2],
 
 
 
-#image_datagen = ImageDataGenerator(rescale=1./255,
-#                     rotation_range=10,
-#                     shear_range=0.05,
-#                     brightness_range=[0.4,0.7],
-#                     horizontal_flip=True,
-#                     preprocessing_function = preprocess)
-#mask_datagen = ImageDataGenerator(data_gen_args)
+
 #
 image_datagen = ImageDataGenerator(**data_gen_args)
 mask_datagen = ImageDataGenerator(**data_gen_args)
@@ -468,30 +325,7 @@ image_generator = image_datagen.flow_from_directory('/home/tonee/segmentation/ro
 mask_generator = mask_datagen.flow_from_directory('/home/tonee/segmentation/roma_v2/mask', target_size=(img_rows,img_cols),
                                                        class_mode=None, seed=seed, batch_size=batchsize, color_mode='grayscale')
 
-#plt.imshow(image_generator[0][0])
-#plt.show()
-#plt.imshow(np.squeeze(mask_generator[0][0]))
-#plt.show()
 
-
-
-#for num in range(100):
-#    
-#    
-#    plt.imshow(image_generator[num][0])
-#    plt.imshow(np.squeeze(mask_generator[num][0]), alpha = 0.4)
-#    plt.show()
-#    
-#    izob =image_generator[num][0]
-#    maska = mask_generator[num][0]
-#    
-#    zxc =len(image_generator[0][0][0][0])
-#    plt.imshow(np.squeeze(mask_generator[0][0]))
-#    plt.show()
-#    if (len(item[0][0][0])):
-#        print ('asd')
-#    plt.imshow(item[0])
-#    plt.show()
     
 plt.imshow(image_generator[2][0])
 plt.imshow(np.squeeze(mask_generator[2][0]), alpha = 0.4)
@@ -499,16 +333,7 @@ plt.show()
     
     
 
-#n=11
-#print ()
-#plt.imshow(image_generator[n][0])
-#plt.show()
-#dd=image_generator[n][0]
-#d=mask_generator[n][0]
-##b=d.astype(np.bool)
-#plt.imshow(np.squeeze(mask_generator[n][0])/255)
-#plt.show()
-#
+
 train_generator = zip(image_generator, mask_generator)
 num_train = len(image_generator)
 
@@ -528,29 +353,7 @@ val_mask_generator = val_datagen_m.flow_from_directory('/home/tonee/segmentation
 
 
 
-#for num in range(100):
-#    
-#    
-#    plt.imshow(val_image_generator[num][0])
-#    plt.imshow(np.squeeze(val_mask_generator[num][0]), alpha = 0.4)
-#    plt.show()
-#    
-#    izob =val_image_generator[num][0]
-#    maska = val_mask_generator[num][0]
-    
 
-
-
-
-#n=1
-#
-#plt.imshow(val_image_generator[n][0] )
-#plt.show()
-#dd=val_image_generator[n][0]
-#d=val_mask_generator[n][0]
-#b=d.astype(np.bool)
-#plt.imshow(np.squeeze(val_mask_generator[n][0]))
-#plt.show()
 
 
 
